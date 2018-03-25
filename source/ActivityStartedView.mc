@@ -6,7 +6,7 @@ class ActivityStartedView extends Ui.View {
 	var myTimer = null;
 	
 	var exercise = 0;
-	var exerciseInSeconds = 11;
+	var exerciseInSeconds = 46;
 	var pauseInSeconds = 6;
 	var myCount = pauseInSeconds-1;
 	var display = myCount+"";
@@ -57,12 +57,7 @@ class ActivityStartedView extends Ui.View {
 				status = :clean;
 				getReady = false;
 				
-    			if(Attention has :playTone){
-                	Attention.playTone(Attention.TONE_START);
-            	}
-            	if(Attention has :vibrate){
-                	Attention.vibrate(new Attention.VibeProfile(50, 100));
-            	}
+				notifyUser();
     		}
     	}
     	else {
@@ -73,16 +68,20 @@ class ActivityStartedView extends Ui.View {
     			display = Rez.Strings[:done];
     			status = :clean;
     			
-    			if(Attention has :playTone){
-                	Attention.playTone(Attention.TONE_START);
-            	}
-            	if(Attention has :vibrate){
-                	Attention.vibrate(new Attention.VibeProfile(50, 100));
-            	}
+    			notifyUser();
     		}
     	}
     	
     	Ui.requestUpdate();
+	}
+	
+	function notifyUser() {
+		if(Attention has :playTone){
+	    	Attention.playTone(Attention.TONE_START);
+		}
+		if(Attention has :vibrate){
+	    	Attention.vibrate([new Attention.VibeProfile(50, 100)]);
+		}
 	}
 
     // Load your resources here
@@ -100,6 +99,13 @@ class ActivityStartedView extends Ui.View {
 
     // Update the view
     function onUpdate(dc) {
+    
+    	if (exercise == 11) {
+    		myTimer.stop();
+    		Ui.popView(Ui.SLIDE_IMMEDIATE);
+    		return true;
+    	}
+    
         if (status == :clean) {
         	View.findDrawableById("countdownTitle").setText("");
         }
@@ -124,6 +130,7 @@ class ActivityStartedView extends Ui.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() {
+    	myTimer.stop();
     }
 
 }
