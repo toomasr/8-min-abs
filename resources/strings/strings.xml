@@ -1,0 +1,23 @@
+<strings>
+   <string id="AppName">8Minute Abs</string>
+
+   <string id="menu_label_1">Start 8 Min Abs</string>
+   <string id="menu_label_2">Quit </string>
+    
+   <string id="BasicCrunch">Basic crunch</string>
+   <string id="RightObliqueCrunch">Right oblique</string>
+   <string id="LeftObliqueCrunch">Left oblique</string>
+   <string id="ToeTouchCrunch">Touch toes</string>
+   <string id="ReverseCrunch">Reverse crunch</string>
+   <string id="RightCrunch">Right crunch</string>
+   <string id="LeftCrunch">Left crunch</string>
+   <string id="PushThroughCrunch">Push through</string>
+   <string id="LegPushCrunch">Push legs up</string>
+   <string id="AlterCurlsCrunch">Alternate curl</string>
+   <string id="CurlsCrunch">Curls</string>
+   
+   <string id="start">Start</string>
+   <string id="done">Done</string>
+   
+   <string id="getReady">Get ready!</string>
+</strings>
