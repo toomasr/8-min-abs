@@ -2,7 +2,9 @@ using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 
 class MinuteAbsApp extends App.AppBase {
-
+	const EXERCISE_LEN_KEY = "ExerciseLengthInSeconds";
+	const PAUSE_LEN_KEY = "PauseLengthInSeconds";
+	
     function initialize() {
         AppBase.initialize();
     }
@@ -20,4 +22,20 @@ class MinuteAbsApp extends App.AppBase {
         return [ new MinuteAbsView(), new MinuteAbsDelegate() ];
     }
 
+    function saveState(key, value) {
+    	App.Storage.setValue(key, value);
+    }
+    
+    function loadState(key) {
+    	var rtrn = App.Storage.getValue(key);
+    	if (rtrn == null) {
+    		if (MinuteAbsApp.EXERCISE_LEN_KEY == key) {
+    			return 45;
+    		}
+    		else {
+    			return 5;
+    		}    		
+    	}
+    	return rtrn;
+    }
 }

@@ -5,14 +5,16 @@ using Toybox.Attention;
 class ActivityStartedView extends Ui.View {
 	var myTimer = null;
 	
+	var exerciseInSeconds;
+	var pauseInSeconds;
+	var myCount;
+	var display;
 	var exercise = 0;
-	var exerciseInSeconds = 46;
-	var pauseInSeconds = 6;
-	var myCount = pauseInSeconds-1;
-	var display = myCount+"";
 	
 	var getReady = true;
 	var status = :chill;
+	
+	var session = null;
 
 	enum {
 		BasicCrunch,
@@ -43,6 +45,26 @@ class ActivityStartedView extends Ui.View {
 	
     function initialize() {
         View.initialize();
+        
+        exerciseInSeconds = MinuteAbsApp.loadState("ExerciseLengthInSeconds") + 1;
+		pauseInSeconds = MinuteAbsApp.loadState("PauseLengthInSeconds") + 1;
+		
+		exerciseInSeconds = 2;
+		pauseInSeconds = 2;
+		myCount = pauseInSeconds-1;
+		display = myCount+"";
+
+   		if (Toybox has :ActivityRecording) {
+       		if ((session == null) || (session.isRecording() == false)) {
+           		session = ActivityRecording.createSession(
+                	{
+                	 :name=>"8 Minute Abs",
+                	 :sport=>ActivityRecording.SPORT_TRAINING,
+               		 :subSport=>ActivityRecording.SUB_SPORT_STRENGTH_TRAINING
+                	});
+           		session.start();
+       		}
+       	}
     }
     
     function timerCallback() {
@@ -68,6 +90,9 @@ class ActivityStartedView extends Ui.View {
     			display = Rez.Strings[:done];
     			status = :clean;
     			
+    			notifyUser();
+    		}
+    		else if(myCount<3) {
     			notifyUser();
     		}
     	}
@@ -102,7 +127,15 @@ class ActivityStartedView extends Ui.View {
     
     	if (exercise == 11) {
     		myTimer.stop();
-    		Ui.popView(Ui.SLIDE_IMMEDIATE);
+    		if (Toybox has :ActivityRecording) {
+    			if ((session != null) && session.isRecording()) {
+           			session.stop();
+           			session.save();
+           			session = null;
+       			}
+       		}
+       		Ui.pushView(new SuccessView(), new SuccessViewDelegate(), Ui.SLIDE_UP);
+       		Ui.popView(Ui.SLIDE_IMMEDIATE);
     		return true;
     	}
     
@@ -139,5 +172,4 @@ class ActivityStartedView extends Ui.View {
     function onHide() {
     	myTimer.stop();
     }
-
 }

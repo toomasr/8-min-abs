@@ -1,8 +1,10 @@
 <strings>
    <string id="AppName">8 Minute Abs</string>
 
-   <string id="menu_label_1">Start 8 Min Abs</string>
-   <string id="menu_label_2">Quit </string>
+   <string id="menu_start">Start 8 Min Abs</string>
+   <string id="menu_quit">Quit</string>
+   <string id="menu_settings">Settings</string>
+   <string id="menu_back">Back</string>
     
    <string id="BasicCrunch">Basic crunch</string>
    <string id="RightObliqueCrunch">Right oblique</string>
