@@ -1,4 +1,13 @@
-<menu id="MainMenu">
-    <menu-item id="item_1" label="@Strings.menu_label_1" />
-    <menu-item id="item_2" label="@Strings.menu_label_2" />
-</menu>
+<menus>
+	<menu id="MainMenu">
+	    <menu-item id="menu_start" label="@Strings.menu_start" />
+	    <menu-item id="menu_settings" label="@Strings.menu_settings" />
+	    <menu-item id="menu_quit" label="@Strings.menu_quit" />
+	</menu>
+	
+	<menu id="SettingsMenu">
+	    <menu-item id="menu_exercise_length1" label="Exercise length" />
+	    <menu-item id="menu_pause_length1" label="Pause length" />
+	    <menu-item id="menu_back1" label="@Strings.menu_back" />
+	</menu>
+</menus>
