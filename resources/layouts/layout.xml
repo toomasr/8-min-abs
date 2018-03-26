@@ -3,6 +3,10 @@
 	    <label x="center" y="100" text="@Strings.AppName" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	</layout>
 	
+	<layout id="SuccessLayout">
+	    <label x="center" y="80" text="Great job!" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	    <label x="center" y="120" text="DONE" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	</layout>
     <!-- 
       To look up the constants see development documentation at
         https://developer.garmin.com/downloads/connect-iq/monkey-c/doc/Toybox/Graphics.html
