@@ -3,8 +3,15 @@
 	    <label x="center" y="100" text="@Strings.AppName" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	</layout>
 	
+    <!-- 
+      To look up the constants see development documentation at
+        https://developer.garmin.com/downloads/connect-iq/monkey-c/doc/Toybox/Graphics.html
+      
+      The Gfx is a shorthand for Graphics!
+     -->
 	<layout id="ActivityLayout">
-	    <label id="countdownTitle" x="center" y="20" text="@Strings.getReady" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
-	    <label id="countdown" x="center" y="100" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	    <label id="countdownTitle" x="center" y="30" text="@Strings.getReady" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	    <label id="countdown" x="center" y="100" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_NUMBER_HOT" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+        <label id="countdownText" x="center" y="100" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	</layout>
 </layouts>

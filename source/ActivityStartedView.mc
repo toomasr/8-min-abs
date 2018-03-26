@@ -106,6 +106,7 @@ class ActivityStartedView extends Ui.View {
     		return true;
     	}
     
+    	// Change the title of the view
         if (status == :clean) {
         	View.findDrawableById("countdownTitle").setText("");
         }
@@ -116,10 +117,16 @@ class ActivityStartedView extends Ui.View {
         	View.findDrawableById("countdownTitle").setText(Rez.Strings[crunchNames[exercise]]);
         }
 
+		// Change the countdown numbers of the screen
     	if (myCount == 0) {
     		View.findDrawableById("countdown").setText("");
     	}
-    	else {
+    	else if (status == :clean) {
+    		View.findDrawableById("countdown").setText("");
+        	View.findDrawableById("countdownText").setText(display);
+        }
+        else {
+        	View.findDrawableById("countdownText").setText("");
         	View.findDrawableById("countdown").setText(display);
         }
 
