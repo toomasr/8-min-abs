@@ -64,9 +64,7 @@ class ActivityStartedView extends Ui.View {
         
         exerciseInSeconds = MinuteAbsApp.loadState("ExerciseLengthInSeconds") + 1;
 		pauseInSeconds = MinuteAbsApp.loadState("PauseLengthInSeconds") + 1;
-		
-		exerciseInSeconds = 2;
-		pauseInSeconds = 2;
+
 		myCount = pauseInSeconds-1;
 		display = myCount+"";
 
