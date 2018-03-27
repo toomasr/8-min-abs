@@ -26,7 +26,7 @@ class MyNumberPicker extends Ui.Picker {
     }
     
     function saveState(value) {
-    	MinuteAbsApp.setValue(mPropName, value);
+    	MinuteAbsApp.saveState(mPropName, value);
     }
 }
 
