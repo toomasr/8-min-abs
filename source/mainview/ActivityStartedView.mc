@@ -185,5 +185,10 @@ class ActivityStartedView extends Ui.View {
     // memory.
     function onHide() {
     	myTimer.stop();
+		if ((session != null) && session.isRecording()) {
+			session.stop();
+			session.discard();
+			session = null;
+       	}
     }
 }
