@@ -17,5 +17,6 @@
 	    <label id="countdownTitle" x="center" y="30" text="@Strings.getReady" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	    <label id="countdown" x="center" y="100" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_NUMBER_HOT" justification="Gfx.TEXT_JUSTIFY_CENTER" />
         <label id="countdownText" x="center" y="100" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+        <label id="countdownSmall" x="center" y="160" text="10" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	</layout>
 </layouts>

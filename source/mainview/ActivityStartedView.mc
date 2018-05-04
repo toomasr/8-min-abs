@@ -149,7 +149,7 @@ class ActivityStartedView extends Ui.View {
        			}
        		}
        		Ui.pushView(new SuccessView(), new SuccessViewDelegate(), Ui.SLIDE_UP);
-       		Ui.popView(Ui.SLIDE_IMMEDIATE);
+      		Ui.popView(Ui.SLIDE_IMMEDIATE);
     		return;
     	}
     
@@ -171,10 +171,19 @@ class ActivityStartedView extends Ui.View {
     	else if (status == :clean) {
     		View.findDrawableById("countdown").setText("");
         	View.findDrawableById("countdownText").setText(display);
+        	View.findDrawableById("countdownSmall").setText("");
         }
         else {
-        	View.findDrawableById("countdownText").setText("");
-        	View.findDrawableById("countdown").setText(display);
+        	if (getReady) {
+        		View.findDrawableById("countdownText").setText(Rez.Strings[crunchNames[exercise]]);
+        		View.findDrawableById("countdown").setText("");
+        		View.findDrawableById("countdownSmall").setText(display);
+        	}
+        	else {
+        		View.findDrawableById("countdownText").setText("");
+        		View.findDrawableById("countdown").setText(display);
+        		View.findDrawableById("countdownSmall").setText("");
+        	}
         }
 
         View.onUpdate(dc);
