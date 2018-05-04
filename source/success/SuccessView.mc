@@ -33,5 +33,11 @@ class SuccessViewDelegate extends Ui.InputDelegate {
 
     function onKey(keyEvent) {
     	Ui.popView(Ui.SLIDE_IMMEDIATE);
+    	return true;
+    }
+    
+    function onTap(clickEvent) {
+    	Ui.popView(Ui.SLIDE_IMMEDIATE);
+    	return true;
     }
 }
