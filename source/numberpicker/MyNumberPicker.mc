@@ -21,18 +21,18 @@ using Toybox.Application as App;
 
 class MyNumberPicker extends Ui.Picker {
 	hidden var mPropName;
+	hidden var numberFactory = new NumberFactory(5, 95, 5);
+	hidden var title = new Ui.Text({:text=>"Seconds",
+    							 :locX=>WatchUi.LAYOUT_HALIGN_CENTER});
 	
     function initialize(propName) {
     	mPropName = propName;
-    	
-    	var numberFactory = new NumberFactory(5, 95, 5);
-    	var title = new Ui.Text({:text=>"Seconds",
-    							 :locX=>WatchUi.LAYOUT_HALIGN_CENTER});
-    	
+
     	var value = MinuteAbsApp.loadState(mPropName);
+    	
         Ui.Picker.initialize({:title => title,
         					  :pattern => [numberFactory],
-        					  :defaults=>[numberFactory.getIndex(value)]});
+        					  :defaults => [numberFactory.getIndex(value)]});
     }
     
     function onUpdate(dc) {
@@ -43,6 +43,9 @@ class MyNumberPicker extends Ui.Picker {
     
     function saveState(value) {
     	MinuteAbsApp.saveState(mPropName, value);
+        setOptions({:title => title,
+        			  :pattern => [numberFactory],
+        			  :defaults => [numberFactory.getIndex(value)]});
     }
 }
 
