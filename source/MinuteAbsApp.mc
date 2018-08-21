@@ -39,7 +39,7 @@ class MinuteAbsApp extends App.AppBase {
     }
 
     function saveState(key, value) {
-    	if (App.Storage has :setValue) {
+    	if (App has :Storage) {
     		App.Storage.setValue(key, value);
     	}
     	else {
@@ -52,7 +52,7 @@ class MinuteAbsApp extends App.AppBase {
     function loadState(key) {
     	var rtrn = null;
     	// works on SDK 2.4
-    	if (App.Storage has :getValue) {
+    	if (App has :Storage) {
     		rtrn = App.Storage.getValue(key);
     	}
     	// works on SDK 1.0 but currently told
