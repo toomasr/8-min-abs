@@ -60,6 +60,7 @@ class ActivityStartedView extends Ui.View {
 	];
 	
     function initialize() {
+        System.println("ActivityStartedView - initialize");
         View.initialize();
         
         exerciseInSeconds = MinuteAbsApp.loadState("ExerciseLengthInSeconds") + 1;
@@ -82,6 +83,7 @@ class ActivityStartedView extends Ui.View {
     }
     
     function timerCallback() {
+        System.println("ActivityStartedView - timerCallback");
     	myCount = myCount - 1;
     	display = myCount+"";
     	status = :chill;
@@ -115,6 +117,7 @@ class ActivityStartedView extends Ui.View {
 	}
 	
 	function notifyUser() {
+	   System.println("ActivityStartedView - notifyUser");
 		if(Attention has :playTone){
 	    	Attention.playTone(Attention.TONE_START);
 		}
@@ -124,7 +127,8 @@ class ActivityStartedView extends Ui.View {
 	}
 
     // Load your resources here
-    function onLayout(dc) {    	
+    function onLayout(dc) {    
+        System.println("ActivityStartedView - onLayout");	
         setLayout(Rez.Layouts.ActivityLayout(dc));
         myTimer = new Timer.Timer();
     	myTimer.start(self.method(:timerCallback), 1000, true);
@@ -134,11 +138,16 @@ class ActivityStartedView extends Ui.View {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
+        System.println("ActivityStartedView - onShow");
     }
 
     // Update the view
     function onUpdate(dc) {
-    
+        System.println("ActivityStartedView - onUpdate");
+        if (doExit) {
+            return;
+        }
+
     	if (exercise == 11) {
     		myTimer.stop();
     		if (Toybox has :ActivityRecording) {
@@ -193,6 +202,7 @@ class ActivityStartedView extends Ui.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() {
+        System.println("ActivityStartedView - onHide");
     	myTimer.stop();
 		if ((session != null) && session.isRecording()) {
 			session.stop();

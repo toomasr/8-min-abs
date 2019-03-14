@@ -27,19 +27,23 @@ class MinuteAbsApp extends App.AppBase {
 
     // onStart() is called on application start up
     function onStart(state) {
+        System.println("onStart");
     }
 
     // onStop() is called when your application is exiting
     function onStop(state) {
+        System.println("onStop");
     }
 
     // Return the initial view of your application here
     function getInitialView() {
+        System.println("getInitialView");
     	var view = new MinuteAbsView(); 
         return [ view, new MinuteAbsDelegate() ];
     }
 
     function saveState(key, value) {
+        System.println("saveState");
     	if (App has :Storage) {
     		App.Storage.setValue(key, value);
     	}
@@ -51,6 +55,7 @@ class MinuteAbsApp extends App.AppBase {
     }
     
     function loadState(key) {
+        System.println("loadState");
     	var rtrn = null;
     	// works on SDK 2.4
     	if (App has :Storage) {
