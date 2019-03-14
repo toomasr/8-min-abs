@@ -45,5 +45,36 @@ class MinuteAbsView extends Ui.View {
     // memory.
     function onHide() {
     }
+}
 
+class MinuteAbsDelegate extends Ui.BehaviorDelegate {
+
+    function initialize() {
+        BehaviorDelegate.initialize();
+    }
+
+    function onMenu() {
+        Ui.pushView(new Rez.Menus.MainMenu(), new MinuteAbsMenuDelegate(), Ui.SLIDE_UP);
+        return true;
+    }
+}
+
+class MinuteAbsMenuDelegate extends Ui.MenuInputDelegate {
+
+    function initialize() {
+        MenuInputDelegate.initialize();
+    }
+
+    function onMenuItem(item) {
+        System.println("MinuteAbsMenuDelegate - onMenuItem "+item);
+        if (item == :menu_start) {
+            Ui.pushView(new ActivityStartedView(), new ActivityStartedDelegate(), Ui.SLIDE_UP);
+        }
+        else if (item == :menu_settings) {
+            Ui.pushView(new Rez.Menus.SettingsMenu(), new SettingsMenuDelegate(), Ui.SLIDE_UP);
+        }
+        else if (item == :menu_quit) {
+            Ui.popView(Ui.SLIDE_IMMEDIATE);
+        }
+    }
 }
