@@ -28,6 +28,7 @@ class ActivityStartedView extends Ui.View {
 	var exercise = 0;
 	
 	var getReady = true;
+	var doExit = false;
 	var status = :chill;
 	
 	var session = null;
@@ -157,8 +158,9 @@ class ActivityStartedView extends Ui.View {
            			session = null;
        			}
        		}
-       		Ui.pushView(new SuccessView(), new SuccessViewDelegate(), Ui.SLIDE_UP);
-      		Ui.popView(Ui.SLIDE_IMMEDIATE);
+
+      		Ui.pushView(new SuccessView(), new SuccessViewDelegate(), Ui.SLIDE_UP);
+      		doExit = true;
     		return;
     	}
     
