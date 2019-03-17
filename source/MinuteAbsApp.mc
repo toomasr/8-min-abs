@@ -65,11 +65,12 @@ class MinuteAbsApp extends App.AppBase {
     	// that will be deprecated soon
     	else {
     		var myApp = Application.getApp();
-    		rtrn = myApp.getProperty(key); 
+    		rtrn = myApp.getProperty(key);
     	}
     	
     	if (rtrn == null) {
-    		if (MinuteAbsApp.EXERCISE_LEN_KEY == key) {
+    	    // cannot use constant - fenix watch blows up!
+    		if ("ExerciseLengthInSeconds" == key) {
     			return 45;
     		}
     		else {
