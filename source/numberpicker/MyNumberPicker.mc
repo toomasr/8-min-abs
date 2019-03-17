@@ -26,13 +26,15 @@ class MyNumberPicker extends Ui.Picker {
     							 :locX=>WatchUi.LAYOUT_HALIGN_CENTER});
 	
     function initialize(propName) {
+        System.println("MyNumberPicker - initialize");
     	mPropName = propName;
 
     	var value = MinuteAbsApp.loadState(mPropName);
-    	
+    	System.println("MyNumberPicker - initialize - loadState done");
         Ui.Picker.initialize({:title => title,
         					  :pattern => [numberFactory],
         					  :defaults => [numberFactory.getIndex(value)]});
+        System.println("MyNumberPicker - initialize - initialize done");
     }
     
     function onUpdate(dc) {
@@ -53,6 +55,7 @@ class MyNumberPickerDelegate extends Ui.PickerDelegate {
 	hidden var mPicker;
 	
     function initialize(picker) {
+        System.println("MyNumberPickerDelegate - initialize");
         Ui.PickerDelegate.initialize();
         mPicker = picker;
     }

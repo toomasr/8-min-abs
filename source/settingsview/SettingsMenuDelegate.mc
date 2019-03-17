@@ -17,7 +17,7 @@
 using Toybox.WatchUi as Ui;
 
 class SettingsMenuDelegate extends Ui.MenuInputDelegate {
-	// I'm cashing these as everything was super slow
+	// I'm caching these as everything was super slow
 	// maybe helps
 	hidden var numberPickerEx;
 	hidden var numberPickerDelegateEx;
@@ -25,18 +25,23 @@ class SettingsMenuDelegate extends Ui.MenuInputDelegate {
 	hidden var numberPickerDelegatePause;
 	
     function initialize() {
+        System.println("SettingsMenuDelegate - initialize");
         MenuInputDelegate.initialize();
         
         // WOW, I cannot use the const from MinuteAbsApp because then the simulator
         // blows up with Symbol Not Found Error
         numberPickerEx = new MyNumberPicker("ExerciseLengthInSeconds");
+        System.println("numberPickerEx - done");
         numberPickerDelegateEx = new MyNumberPickerDelegate(numberPickerEx);
-        
+        System.println("numberPickerDelegateEx - done");
         numberPickerPause = new MyNumberPicker("PauseLengthInSeconds");
+        System.println("numberPickerPause - done");
         numberPickerDelegatePause = new MyNumberPickerDelegate(numberPickerPause);
+        System.println("numberPickerDelegatePause - done");
     }
 
     function onMenuItem(item) {
+        System.println("SettingsMenuDelegate - onMenuItem");
         if (item == :menu_exercise_length1) {	
             Ui.pushView(numberPickerEx, numberPickerDelegateEx, Ui.SLIDE_IMMEDIATE);
         }
