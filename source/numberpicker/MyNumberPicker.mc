@@ -14,58 +14,62 @@
  *    limitations under the License.
  */
 
-using Toybox.WatchUi as Ui;
+using Toybox.WatchUi;
+using Toybox.System;
+using Toybox.Application;
 using Toybox.Graphics as Gfx;
-using Toybox.System as System;
-using Toybox.Application as App;
 
-class MyNumberPicker extends Ui.Picker {
+class MyNumberPicker extends WatchUi.Picker {
 	hidden var mPropName;
 	hidden var numberFactory = new NumberFactory(5, 95, 5);
-	hidden var title = new Ui.Text({:text=>"Seconds",
+	hidden var title = new WatchUi.Text({:text=>"Seconds",
     							 :locX=>WatchUi.LAYOUT_HALIGN_CENTER});
 	
     function initialize(propName) {
-        System.println("MyNumberPicker - initialize");
+        System.println("MyNumberPicker.initialize");
     	mPropName = propName;
 
     	var value = MinuteAbsApp.loadState(mPropName);
     	System.println("MyNumberPicker - initialize - loadState done");
-        Ui.Picker.initialize({:title => title,
+        WatchUi.Picker.initialize({:title => title,
         					  :pattern => [numberFactory],
         					  :defaults => [numberFactory.getIndex(value)]});
-        System.println("MyNumberPicker - initialize - initialize done");
+        System.println("/MyNumberPicker.initialize");
     }
     
     function onUpdate(dc) {
-        dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+    	WatchUi.Picker.onUpdate(dc);
+    	System.println("MyNumberPicker.onUpdate");
+      	dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
         dc.clear();
-        Ui.Picker.onUpdate(dc);
+        System.println("/MyNumberPicker.onUpdate");
     }
     
     function saveState(value) {
+    	System.println("MyNumberPicker.saveState (" + value + ")");
     	MinuteAbsApp.saveState(mPropName, value);
-        setOptions({:title => title,
-        			  :pattern => [numberFactory],
-        			  :defaults => [numberFactory.getIndex(value)]});
+        System.println("/MyNumberPicker.saveState (" + value + ")");
     }
 }
 
-class MyNumberPickerDelegate extends Ui.PickerDelegate {
+class MyNumberPickerDelegate extends WatchUi.PickerDelegate {
 	hidden var mPicker;
 	
     function initialize(picker) {
-        System.println("MyNumberPickerDelegate - initialize");
-        Ui.PickerDelegate.initialize();
+        System.println("MyNumberPickerDelegate.initialize");
+        WatchUi.PickerDelegate.initialize();
         mPicker = picker;
+        System.println("/MyNumberPickerDelegate.initialize");
     }
 
 	function onCancel() {
-		Ui.popView(Ui.SLIDE_IMMEDIATE);
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 	}
 
 	function onAccept(values) {
+		System.println("MyNumberPickerDelegate.onAccept");
 		mPicker.saveState(values[0]);
-		Ui.popView(Ui.SLIDE_IMMEDIATE);
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+		System.println("/MyNumberPickerDelegate.onAccept");
 	}
 }

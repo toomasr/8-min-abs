@@ -38,20 +38,22 @@ class MinuteAbsApp extends App.AppBase {
     // Return the initial view of your application here
     function getInitialView() {
         System.println("getInitialView");
-    	var view = new MinuteAbsView(); 
-        return [ view, new MinuteAbsDelegate() ];
+        return [ new MinuteAbsView() ];
     }
 
     function saveState(key, value) {
-        System.println("saveState");
+        System.println("MinuteAbsApp.saveState");
     	if (App has :Storage) {
+    		System.println("hasStorage");
     		App.Storage.setValue(key, value);
     	}
     	else {
+    		System.println("saveProperty");
     		var myApp = Application.getApp();
     		myApp.setProperty(key, value);
     		myApp.saveProperties();
     	}
+    	System.println("/MinuteAbsApp.saveState");
     }
     
     function loadState(key) {

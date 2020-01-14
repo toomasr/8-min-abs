@@ -17,39 +17,30 @@
 using Toybox.WatchUi as Ui;
 
 class SettingsMenuDelegate extends Ui.MenuInputDelegate {
-	// I'm caching these as everything was super slow
-	// maybe helps
-	hidden var numberPickerEx;
-	hidden var numberPickerDelegateEx;
-	hidden var numberPickerPause;
-	hidden var numberPickerDelegatePause;
-	
     function initialize() {
-        System.println("SettingsMenuDelegate - initialize");
         MenuInputDelegate.initialize();
-        
-        // WOW, I cannot use the const from MinuteAbsApp because then the simulator
-        // blows up with Symbol Not Found Error
-        numberPickerEx = new MyNumberPicker("ExerciseLengthInSeconds");
-        System.println("numberPickerEx - done");
-        numberPickerDelegateEx = new MyNumberPickerDelegate(numberPickerEx);
-        System.println("numberPickerDelegateEx - done");
-        numberPickerPause = new MyNumberPicker("PauseLengthInSeconds");
-        System.println("numberPickerPause - done");
-        numberPickerDelegatePause = new MyNumberPickerDelegate(numberPickerPause);
-        System.println("numberPickerDelegatePause - done");
     }
 
     function onMenuItem(item) {
         System.println("SettingsMenuDelegate - onMenuItem");
-        if (item == :menu_exercise_length1) {	
-            Ui.pushView(numberPickerEx, numberPickerDelegateEx, Ui.SLIDE_IMMEDIATE);
+        if (item == :menu_exercise_length1) {
+        	System.println("menu_exercise_length1");
+        	var numberPickerEx = new MyNumberPicker("ExerciseLengthInSeconds");
+            Ui.pushView(numberPickerEx, new MyNumberPickerDelegate(numberPickerEx), Ui.SLIDE_IMMEDIATE);
+            System.println("/menu_exercise_length1");
         }
         else if (item == :menu_pause_length1) {
-        	Ui.pushView(numberPickerPause, numberPickerDelegatePause, Ui.SLIDE_IMMEDIATE);
+        	System.println("menu_pause_length1");
+        	var numberPickerPause = new MyNumberPicker("PauseLengthInSeconds");
+        	Ui.pushView(numberPickerPause, new MyNumberPickerDelegate(numberPickerPause), Ui.SLIDE_IMMEDIATE);
+        	System.println("/menu_pause_length1");
         }
+        // no need to do anything here as the menu seems
+        // to pop all by itself to previous; if I pop then it
+        // goes back to very beginning screen
         else if (item == :menu_back1) {
-        	Ui.popView(Ui.SLIDE_IMMEDIATE);
+        	// this block is not actually needed
         }
+        System.println("/SettingsMenuDelegate - onMenuItem");
     }
 }

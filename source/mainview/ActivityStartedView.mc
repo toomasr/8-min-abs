@@ -211,5 +211,6 @@ class ActivityStartedView extends Ui.View {
 			session.discard();
 			session = null;
        	}
+       	System.println("/ActivityStartedView - onHide");
     }
 }
