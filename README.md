@@ -10,4 +10,4 @@ The easiest installation medium is through the Garmin App Store. Navigate there 
 
 # Build from source
 
-To build the project you need to have the [Connect IQ SDK](https://developer.garmin.com/connect-iq/sdk/) installed. I'm currently building this with the `2.4.4` version with the [Eclipse](https://www.eclipse.org/ide/) IDE. 
+To build the project you need to have the [Connect IQ SDK](https://developer.garmin.com/connect-iq/sdk/) installed. I'm currently building this with the `3.1.6` version of the SDK while using [Eclipse](https://www.eclipse.org/ide/) IDE with the Garmin Eclipse Plug-in. See [Getting Started](https://developer.garmin.com/connect-iq/programmers-guide/getting-started/) guide by Garmin for a complete setup documentation.
