@@ -16,7 +16,7 @@
 
 using Toybox.WatchUi;
 
-class MinuteAbsMenuDelegate extends WatchUi.MenuInputDelegate {    
+class MinuteAbsMenuDelegate extends WatchUi.MenuInputDelegate {
     function initialize() {
         MenuInputDelegate.initialize(); 
     }
