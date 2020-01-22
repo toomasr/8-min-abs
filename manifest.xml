@@ -16,6 +16,7 @@
             <iq:product id="fenix6xpro"/>
             <iq:product id="fr935"/>
             <iq:product id="fr945"/>
+            <iq:product id="vivoactive4"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Fit"/>
