@@ -16,6 +16,7 @@
 
 using Toybox.Graphics as Gfx;
 using Toybox.WatchUi as Ui;
+import Toybox.Lang;
 
 class NumberFactory extends Ui.PickerFactory {
     hidden var mStart;
@@ -35,13 +36,13 @@ class NumberFactory extends Ui.PickerFactory {
         mFormatString = "%d";
     }
     
-    function getIndex(value) {
+    function getIndex(value as Number) as Number {
     	var index = (value / mIncrement) - 1;
     	return index;
     }
 
-    function getDrawable(index, selected) {
-        return new Ui.Text( { :text=>getValue(index).format(mFormatString), :color=>Gfx.COLOR_WHITE, :font=> mFont, :locX =>Ui.LAYOUT_HALIGN_CENTER, :locY=>Ui.LAYOUT_VALIGN_CENTER } );
+    function getDrawable(index as Number, selected as Number) {
+        return new Ui.Text( { :text=> (getValue(index) as Number).format(mFormatString), :color=>Gfx.COLOR_WHITE, :font=> mFont, :locX =>Ui.LAYOUT_HALIGN_CENTER, :locY=>Ui.LAYOUT_VALIGN_CENTER } );
     }
 
     function getValue(index) {

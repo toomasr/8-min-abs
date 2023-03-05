@@ -64,6 +64,7 @@ class MyNumberPickerDelegate extends WatchUi.PickerDelegate {
 
 	function onCancel() {
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+		return true;
 	}
 
 	function onAccept(values) {
@@ -71,5 +72,6 @@ class MyNumberPickerDelegate extends WatchUi.PickerDelegate {
 		mPicker.saveState(values[0]);
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 		System.println("/MyNumberPickerDelegate.onAccept");
+		return true;
 	}
 }

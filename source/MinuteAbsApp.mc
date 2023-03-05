@@ -21,64 +21,64 @@ class MinuteAbsApp extends App.AppBase {
 	const EXERCISE_LEN_KEY = "ExerciseLengthInSeconds";
 	const PAUSE_LEN_KEY = "PauseLengthInSeconds";
 	
-    function initialize() {
-        AppBase.initialize();
-    }
+	function initialize() {
+			AppBase.initialize();
+	}
 
-    // onStart() is called on application start up
-    function onStart(state) {
-        System.println("onStart");
-    }
+	// onStart() is called on application start up
+	function onStart(state) {
+			System.println("onStart");
+	}
 
-    // onStop() is called when your application is exiting
-    function onStop(state) {
-        System.println("onStop");
-    }
+	// onStop() is called when your application is exiting
+	function onStop(state) {
+			System.println("onStop");
+	}
 
-    // Return the initial view of your application here
-    function getInitialView() {
-        System.println("getInitialView");
-        return [ new MinuteAbsView() ];
-    }
+	// Return the initial view of your application here
+	function getInitialView() {
+			System.println("getInitialView");
+			return [ new MinuteAbsView() ];
+	}
 
-    function saveState(key, value) {
-        System.println("MinuteAbsApp.saveState");
-    	if (App has :Storage) {
-    		System.println("hasStorage");
-    		App.Storage.setValue(key, value);
-    	}
-    	else {
-    		System.println("saveProperty");
-    		var myApp = Application.getApp();
-    		myApp.setProperty(key, value);
-    		myApp.saveProperties();
-    	}
-    	System.println("/MinuteAbsApp.saveState");
-    }
-    
-    function loadState(key) {
-        System.println("loadState");
-    	var rtrn = null;
-    	// works on SDK 2.4
-    	if (App has :Storage) {
-    		rtrn = App.Storage.getValue(key);
-    	}
-    	// works on SDK 1.0 but currently told
-    	// that will be deprecated soon
-    	else {
-    		var myApp = Application.getApp();
-    		rtrn = myApp.getProperty(key);
-    	}
-    	
-    	if (rtrn == null) {
-    	    // cannot use constant - fenix watch blows up!
-    		if ("ExerciseLengthInSeconds" == key) {
-    			return 45;
-    		}
-    		else {
-    			return 5;
-    		}    		
-    	}
-    	return rtrn;
-    }
+	function saveState(key, value) {
+			System.println("MinuteAbsApp.saveState");
+		if (App has :Storage) {
+			System.println("hasStorage");
+			App.Storage.setValue(key, value);
+		}
+		else {
+			System.println("saveProperty");
+			var myApp = Application.getApp();
+			myApp.setProperty(key, value);
+			myApp.saveProperties();
+		}
+		System.println("/MinuteAbsApp.saveState");
+	}
+	
+	function loadState(key) {
+			System.println("loadState");
+		var rtrn = null;
+		// works on SDK 2.4
+		if (App has :Storage) {
+			rtrn = App.Storage.getValue(key);
+		}
+		// works on SDK 1.0 but currently told
+		// that will be deprecated soon
+		else {
+			var myApp = Application.getApp();
+			rtrn = myApp.getProperty(key);
+		}
+		
+		if (rtrn == null) {
+				// cannot use constant - fenix watch blows up!
+			if ("ExerciseLengthInSeconds" == key) {
+				return 45;
+			}
+			else {
+				return 5;
+			}    		
+		}
+		return rtrn;
+	}
 }
