@@ -14,6 +14,7 @@
  *    limitations under the License.
  */
 
+using Toybox.Application as App;
 using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Application;
@@ -26,15 +27,15 @@ class MyNumberPicker extends WatchUi.Picker {
     							 :locX=>WatchUi.LAYOUT_HALIGN_CENTER});
 	
     function initialize(propName) {
-        System.println("MyNumberPicker.initialize");
+      System.println("MyNumberPicker.initialize");
     	mPropName = propName;
 
-    	var value = MinuteAbsApp.loadState(mPropName);
+    	var value = loadState(mPropName);
     	System.println("MyNumberPicker - initialize - loadState done");
-        WatchUi.Picker.initialize({:title => title,
+      WatchUi.Picker.initialize({:title => title,
         					  :pattern => [numberFactory],
         					  :defaults => [numberFactory.getIndex(value)]});
-        System.println("/MyNumberPicker.initialize");
+      System.println("/MyNumberPicker.initialize");
     }
     
     function onUpdate(dc) {
@@ -44,11 +45,52 @@ class MyNumberPicker extends WatchUi.Picker {
         dc.clear();
         System.println("/MyNumberPicker.onUpdate");
     }
-    
+
     function saveState(value) {
     	System.println("MyNumberPicker.saveState (" + value + ")");
-    	MinuteAbsApp.saveState(mPropName, value);
-        System.println("/MyNumberPicker.saveState (" + value + ")");
+    	saveStateGlobal(mPropName, value);
+      System.println("/MyNumberPicker.saveState (" + value + ")");
+    }
+
+    function saveStateGlobal(key, value) {
+			System.println("MinuteAbsApp.saveState");
+      if (App has :Storage) {
+        System.println("hasStorage");
+        App.Storage.setValue(key, value);
+      }
+      else {
+        System.println("saveProperty");
+        var myApp = Application.getApp();
+        myApp.setProperty(key, value);
+        myApp.saveProperties();
+      }
+      System.println("/MinuteAbsApp.saveState");
+    }
+    
+    function loadState(key) {
+			System.println("loadState");
+      var rtrn = null;
+      // works on SDK 2.4
+      if (App has :Storage) {
+        rtrn = App.Storage.getValue(key);
+      }
+      // works on SDK 1.0 but currently told
+      // that will be deprecated soon
+      else {
+        var myApp = Application.getApp();
+        rtrn = myApp.getProperty(key);
+      }
+      
+      if (rtrn == null) {
+          // cannot use constant - fenix watch blows up!
+        if ("ExerciseLengthInSeconds" == key) {
+          return 45;
+        }
+        else {
+          return 5;
+        }    		
+      }
+      return rtrn;
     }
 }
 

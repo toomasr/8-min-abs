@@ -41,7 +41,7 @@ class NumberFactory extends Ui.PickerFactory {
     	return index;
     }
 
-    function getDrawable(index as Number, selected as Number) {
+    function getDrawable(index as Number, selected as Lang.Boolean) {
         return new Ui.Text( { :text=> (getValue(index) as Number).format(mFormatString), :color=>Gfx.COLOR_WHITE, :font=> mFont, :locX =>Ui.LAYOUT_HALIGN_CENTER, :locY=>Ui.LAYOUT_VALIGN_CENTER } );
     }
 

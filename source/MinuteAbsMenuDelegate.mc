@@ -15,6 +15,7 @@
  */
 
 using Toybox.WatchUi;
+using Toybox.Application as App;
 
 class MinuteAbsMenuDelegate extends WatchUi.MenuInputDelegate {
     function initialize() {

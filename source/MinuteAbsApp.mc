@@ -41,44 +41,4 @@ class MinuteAbsApp extends App.AppBase {
 			return [ new MinuteAbsView() ];
 	}
 
-	function saveState(key, value) {
-			System.println("MinuteAbsApp.saveState");
-		if (App has :Storage) {
-			System.println("hasStorage");
-			App.Storage.setValue(key, value);
-		}
-		else {
-			System.println("saveProperty");
-			var myApp = Application.getApp();
-			myApp.setProperty(key, value);
-			myApp.saveProperties();
-		}
-		System.println("/MinuteAbsApp.saveState");
-	}
-	
-	function loadState(key) {
-			System.println("loadState");
-		var rtrn = null;
-		// works on SDK 2.4
-		if (App has :Storage) {
-			rtrn = App.Storage.getValue(key);
-		}
-		// works on SDK 1.0 but currently told
-		// that will be deprecated soon
-		else {
-			var myApp = Application.getApp();
-			rtrn = myApp.getProperty(key);
-		}
-		
-		if (rtrn == null) {
-				// cannot use constant - fenix watch blows up!
-			if ("ExerciseLengthInSeconds" == key) {
-				return 45;
-			}
-			else {
-				return 5;
-			}    		
-		}
-		return rtrn;
-	}
 }

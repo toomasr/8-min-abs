@@ -14,6 +14,7 @@
  *    limitations under the License.
  */
 
+using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.Timer;
 using Toybox.Attention;
@@ -67,8 +68,8 @@ class ActivityStartedView extends Ui.View {
     System.println("ActivityStartedView - initialize");
     View.initialize();
 
-    exerciseInSeconds = MinuteAbsApp.loadState("ExerciseLengthInSeconds") + 1;
-		pauseInSeconds = MinuteAbsApp.loadState("PauseLengthInSeconds") + 1;
+    exerciseInSeconds = loadState("ExerciseLengthInSeconds") + 1;
+		pauseInSeconds = loadState("PauseLengthInSeconds") + 1;
 
 		myCount = pauseInSeconds-1;
 		display = myCount+"";
@@ -223,4 +224,45 @@ class ActivityStartedView extends Ui.View {
 			}
 			System.println("/ActivityStartedView - onHide");
 		}
+
+  function saveState(key, value) {
+			System.println("MinuteAbsApp.saveState");
+      if (App has :Storage) {
+        System.println("hasStorage");
+        App.Storage.setValue(key, value);
+      }
+      else {
+        System.println("saveProperty");
+        var myApp = Application.getApp();
+        myApp.setProperty(key, value);
+        myApp.saveProperties();
+      }
+      System.println("/MinuteAbsApp.saveState");
+    }
+    
+    function loadState(key) {
+      System.println("loadState");
+      var rtrn = null;
+      // works on SDK 2.4
+      if (App has :Storage) {
+        rtrn = App.Storage.getValue(key);
+      }
+      // works on SDK 1.0 but currently told
+      // that will be deprecated soon
+      else {
+        var myApp = Application.getApp();
+        rtrn = myApp.getProperty(key);
+      }
+      
+      if (rtrn == null) {
+          // cannot use constant - fenix watch blows up!
+        if ("ExerciseLengthInSeconds" == key) {
+          return 45;
+        }
+        else {
+          return 5;
+        }    		
+      }
+      return rtrn;
+    }
 }
